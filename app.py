@@ -53,12 +53,12 @@ async def get_attraction_id(id: int):
 
 @app.get("/api/attractions")
 async def get_attractions(
-  page: int = Query(1, ge=1),  # 頁數，從 1 開始
+  page: int = Query(0, ge=0),  # 頁數，從 0 開始
   keyword: str = Query(None)   # 搜尋關鍵字，可為 None
 ):
   cursor = mydb.cursor(dictionary=True)
   limit = 12  # 每頁 12 筆
-  offset = (page - 1) * limit #計算跳過的頁數
+  offset = page * limit #計算跳過的頁數
   sql = "SELECT * FROM attractions"
   params = []
   if keyword:
