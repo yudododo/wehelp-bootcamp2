@@ -4,8 +4,66 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Index</title>
+  <!-- <link rel="stylesheet" href="{{ url_for('static', path='styles.css') }}"> -->
+  <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-  
+  <div class="container">
+    <div class="header">
+      <h1>台北一日遊</h1>
+      <div class="navbar">
+        <a href="#">預訂行程</a>
+        <div class="account">
+          <a href="#">登入</a> /
+          <a href="#">註冊</a>
+        </div>
+      </div>
+    </div>
+
+  <!-- 橫幅區域 -->
+    <div class="banner">
+      <div class="bannerContent">
+        <div class="slogon">
+          <h2>輕鬆享受台北一日悠閒</h2>
+          <p>探索各個角落，體驗城市的深度旅遊行程</p>
+        </div>
+        <div class="searchBox">
+          <input type="text" placeholder="輸入景點名稱查詢" class="searchInput">
+          <button class="searchButton"><img src="/static/img/icon_search.png" alt=""></button>
+        </div>
+      </div>
+    </div>
+
+  <!-- 分類選單 -->
+    <div class="category">
+      <button class="leftBtn"><img src="/static/img/arrow left.png" alt=""></button>
+      <div class="mrtCon">
+        <!-- <a class="mrt" href="#">劍潭</a> -->
+      </div>
+      <button class="rightBtn"><img src="/static/img/arrow right.png" alt=""></button>
+    </div>
+
+  <!-- 景點列表 -->
+    <div class="attractions">
+      <!-- <div class="attractionCard">
+        <div class="attraction">
+          <div class="attractionImg">
+            <img src="https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000848.jpg" alt="">
+            <h3 class="attractionName">平安橋</h3>
+          </div>
+          <div class="attractionInfo">
+            <p class="attractionMrt">忠孝復興</p>
+            <p class="attractionCat">公共藝術</p>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <div class="more"></div>
+  <!-- 頁尾 -->
+  </div>
+  <div class="footer">
+    <p>COPYRIGHT © 2021 台北一日遊</p>
+  </div>
+  <script src="/static/all.js"></script>
 </body>
 </html>

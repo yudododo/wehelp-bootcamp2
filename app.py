@@ -5,8 +5,11 @@ import mysql.connector
 import os
 import re
 from dotenv import load_dotenv
-
+from fastapi.staticfiles import StaticFiles
 app=FastAPI()
+
+# 提供 static 資料夾內的靜態檔案
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 load_dotenv()
 mydb = mysql.connector.connect(
