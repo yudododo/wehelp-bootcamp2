@@ -52,7 +52,6 @@ table {
 .container{
   max-width: 1920px;
   width: 100%;
-  font-size: 20px;
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
@@ -65,7 +64,7 @@ table {
   display: flex;
   justify-content: space-between; 
   align-items: center;
-  padding: 10px;
+  padding: 10px 10px;
 }
 .header h1{
   font-size: 30px;
@@ -81,7 +80,8 @@ table {
 .navbar a{
   padding: 10px;
   text-decoration: none;
-  color: black;
+  font-size:16px;
+  color: #666666;
 }
 .account{
   padding: 10px;
@@ -89,7 +89,7 @@ table {
 .account a{
   padding: 0;
   text-decoration: none;
-  color: black;
+  
 }
 .banner{
   max-width: 1920px;
@@ -104,7 +104,8 @@ table {
   max-width: 1200px;
   width: 100%;
   color: #F8F8F8;
-  padding: 75px;
+  font-weight: bold;
+  padding: 75px 10px;
   margin: 0 auto;
 }
 .slogon h2{
@@ -129,6 +130,14 @@ table {
   border: 0;
   padding: 0px 15px;
   border-radius: 10px 0 0 10px;
+  color: #757575;
+  font-weight:bold;
+  font-size: 16px;
+}
+input::placeholder {
+  color: #757575;
+  font-weight:bold;
+  font-size: 16px;
 }
 .searchButton{
   height:46px;
@@ -150,12 +159,17 @@ table {
   position: relative;
   width: 100%;
   margin-bottom: 20px;
+  padding: 0 10px;
+  color:#666666;
+  font-size: 16px;
 }
 .leftBtn, .rightBtn{
   background: white;
   border:0;
   cursor: pointer;
-
+}
+.mrtCon{
+  padding: 13px 10px;
 }
 .mrt{
   padding: 5px 15px;
@@ -181,7 +195,6 @@ table {
   gap:30px;
   padding: 15px;
   font-size: 16px;
-  font-weight:bold;
   flex-wrap: wrap;
 }
 .attractionCard{
@@ -210,6 +223,7 @@ table {
   background-color: rgba(0, 0, 0, 0.6); /* 可選，讓文字背景有點遮蓋效果 */
   color: white;
   padding: 10px;
+  font-weight:bold;
 }
 .attractionInfo{
   color: #757575;
@@ -235,6 +249,13 @@ table {
   font-weight: bold;
 }
 
+@media (max-width: 830px) {
+  .attractions {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 @media (max-width: 480px) {
   .container {
     padding-bottom: 20px; 
@@ -255,9 +276,6 @@ table {
     width:320px;
   }
   .attractions {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction:column;
   }
   .attractionCard{
