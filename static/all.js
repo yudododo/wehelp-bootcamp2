@@ -99,10 +99,12 @@ function renderAttractions(attractions) {
     attractionInfo.appendChild(attractionMrt);
     attractionInfo.appendChild(attractionCat);
 
-    attraction.appendChild(attractionImg);
-    attraction.appendChild(attractionInfo);
+    // attraction.appendChild(attractionImg);
+    attractionCard.appendChild(attractionImg);
+    // attraction.appendChild(attractionInfo);
+    attractionCard.appendChild(attractionInfo);
 
-    attractionCard.appendChild(attraction);
+    // attractionCard.appendChild(attraction);
     attractionsContainer.appendChild(attractionCard);
   });
 }
