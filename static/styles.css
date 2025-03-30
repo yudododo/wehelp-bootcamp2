@@ -1,0 +1,302 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+  box-sizing: border-box;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* CSS reset end  */
+.container{
+  max-width: 1920px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  padding-bottom: 40px;
+}
+.header{
+  max-width: 1200px;
+  width:100%;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 10px 10px;
+}
+.header h1{
+  font-size: 30px;
+  font-weight: bold;
+  color: #448899;
+}
+.navbar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size:16px;
+}
+.navbar a{
+  padding: 10px;
+  text-decoration: none;
+  font-size:16px;
+  color: #666666;
+}
+.account{
+  padding: 10px;
+}
+.account a{
+  padding: 0;
+  text-decoration: none;
+  
+}
+.banner{
+  max-width: 1920px;
+  width:100%;
+  height:320px;
+  background-image:url("/static/img/welcome_image.png");
+  background-repeat: no-repeat; 
+  background-size: cover;  /* 讓圖片自動填滿整個 .banner */
+  margin: 0 0 40px 0;
+}
+.bannerContent{
+  max-width: 1200px;
+  width: 100%;
+  color: #F8F8F8;
+  font-weight: bold;
+  padding: 75px 10px;
+  margin: 0 auto;
+}
+.slogon h2{
+  font-size: 28px;
+  padding-bottom:15px;
+}
+.slogon p{
+  font-size: 16px;
+  padding-bottom:25px;
+}
+.searchBox{
+  width: 460px;
+  height: 46px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  /* border-radius: 50px; */
+}
+.searchInput{
+  width:100%;
+  height:100%;
+  border: 0;
+  padding: 0px 15px;
+  border-radius: 10px 0 0 10px;
+  color: #757575;
+  font-weight:bold;
+  font-size: 16px;
+}
+input::placeholder {
+  color: #757575;
+  font-weight:bold;
+  font-size: 16px;
+}
+.searchButton{
+  height:46px;
+  background: #448899;
+  border: 0;
+  padding: 0px 15px;
+  border-radius: 0 10px 10px 0; 
+}
+.searchButton:hover{
+  background: #709ea9;
+}
+.category{
+  max-width: 1200px;
+  width: 100%;
+  display:flex;
+  align-items: center;
+  gap: 5px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 0 10px;
+  color:#666666;
+  font-size: 16px;
+}
+.leftBtn, .rightBtn{
+  background: white;
+  border:0;
+  cursor: pointer;
+}
+.mrtCon{
+  padding: 13px 10px;
+}
+.mrt{
+  padding: 5px 15px;
+}
+.mrt:hover{
+  background: #448899;
+  color:white;
+}
+.mrtCon {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  white-space: nowrap;
+  width: calc(100% - 64px);
+}
+.mrtCon::-webkit-scrollbar {
+  display: none; 
+}
+.attractions{
+  max-width:1200px;
+  width:100%;
+  /* display:flex; */
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); /* 卡片自適應 */
+  gap:30px;
+  padding: 15px;
+  font-size: 16px;
+  justify-content: center;
+  align-items: center;
+}
+.attractionCard{
+  max-width: 270px; 
+  width:100%;
+  aspect-ratio: 270 / 197; /* 保持寬高比例 */
+  border: 1px solid #E8E8E8;
+  border-radius:10px;
+  justify-content: center;
+  align-items: center;
+}
+.attractionImg {
+  position: relative;
+  aspect-ratio: 268 / 197; /* 保持寬高比例 */
+  width: 100%;
+  height: 100%;
+}
+.attractionImg img {
+  border-radius: 10px 10px 0 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.attractionName{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6); /* 可選，讓文字背景有點遮蓋效果 */
+  color: white;
+  padding: 10px;
+  font-weight:bold;
+}
+.attractionInfo{
+  color: #757575;
+  height: 45px;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.footer{
+  max-width: 1920px;
+  width:100%;
+  color:white;
+  background: #757575;
+  display:flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+.footer p{
+  max-width:1200px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+@media (max-width: 1200px) {
+  .attractions {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .attractionCard{
+    max-width: 370px; 
+  }
+}
+
+@media (max-width: 830px) {
+  .attractions{
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .attractionCard{
+    max-width: 385px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-bottom: 20px; 
+  }
+  .banner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .bannerContent {
+    padding: 0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .searchBox {
+    width:320px;
+  }
+  .attractions {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .attractionCard{
+    max-width:450px;
+  }
+}
