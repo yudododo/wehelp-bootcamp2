@@ -57,6 +57,8 @@ table {
   /* justify-content: center; */
   align-items: center;
   padding-bottom: 40px;
+  font-size: 16px ;
+  color:#666666;
 }
 .header{
   max-width: 1200px;
@@ -75,12 +77,10 @@ table {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size:16px;
 }
 .navbar a{
   padding: 10px;
   text-decoration: none;
-  font-size:16px;
   color: #666666;
 }
 .account{
@@ -113,7 +113,6 @@ table {
   padding-bottom:15px;
 }
 .slogon p{
-  font-size: 16px;
   padding-bottom:25px;
 }
 .searchBox{
@@ -160,8 +159,6 @@ input::placeholder {
   width: 100%;
   margin-bottom: 20px;
   padding: 0 10px;
-  color:#666666;
-  font-size: 16px;
 }
 .leftBtn, .rightBtn{
   background: white;
@@ -196,9 +193,11 @@ input::placeholder {
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); /* 卡片自適應 */
   gap:30px;
   padding: 15px;
-  font-size: 16px;
   justify-content: center;
   align-items: center;
+}
+.attractions a{
+  text-decoration: none;
 }
 .attractionCard{
   max-width: 270px; 
@@ -252,8 +251,148 @@ input::placeholder {
 .footer p{
   max-width:1200px;
   text-align: center;
-  font-size: 16px;
   font-weight: bold;
+}
+
+/* attraction.html 的 CSS */
+.attraction{
+  max-width: 1200px;
+  width:100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin: 40px 10px;
+  padding: 10px;
+}
+.imageSlider{
+  max-width: 540px;
+  width:100%;
+  position: relative;
+}
+.attImg{
+  max-width: 540px;
+  aspect-ratio: 540 / 400; /* 保持寬高比例 */
+  width:100%;
+  height: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+  object-position: center;
+}
+.info{
+  max-width: 600px;
+  width:100%;
+  display:flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.order{
+  display:flex;
+  flex-direction: column;
+  gap: 15px;
+  background: #E8E8E8;
+  border-radius: 5px;
+  padding: 15px 20px 41px 20px;
+}
+strong{
+  font-weight: bold;
+  line-height: 26px;
+}
+.attName{
+  font-size: 24px;
+  font-weight: bold;
+}
+.attInfo{
+  display:flex;
+}
+.attMrt{
+  margin: 0 0 0 5px;
+}
+.attBtn{
+  max-width:154px;
+  width:100%;
+  /* color:white; */
+  font-size: 19px;
+  background: #448899;
+  border:0;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+.attBtn a{
+  text-decoration: none;
+  color:white;
+}
+input[type="radio"] {
+  /* accent-color:  #448899; */
+  border:none;
+  appearance: none; 
+  background-color: #FFFFFF;
+  width: 23px; 
+  height: 23px;
+  border-radius: 50%; 
+  box-shadow: 0 0 0 1.8px #FFFFFF inset;
+  margin: 0 4px 0 8px;
+}
+input[type="radio"]:checked{
+  background-color: #448899;
+}
+.time{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.description{
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap:25px;
+  padding: 10px;
+}
+hr {
+  max-width: 1200px;
+  display: block;
+  margin: 0 10px 40px 10px;
+  border-top: 1px solid #E8E8E8; /* 上邊框設為實線 */
+  width: 100%;
+}
+.des, .address, .transport{
+  line-height: 22px;
+}
+.dotsContainer {
+  position: absolute;
+  bottom: 10px;
+  left: 50%; 
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px; 
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%; 
+  border: 1px solid white;
+  background-color:white;
+  cursor: pointer;
+  transition: background-color 0.3s; /* 平滑過渡效果 */
+}
+.dot.active {
+  background-color: #000;
+}
+.arrow {
+  position: absolute; 
+  top: 50%;
+  transform: translateY(-50%);
+  width:36px;
+  height:36px;
+  cursor: pointer;
+  z-index: 10; /* 確保箭頭位於圖片和圓圈之上 */
+}
+.arrow.prev {
+  left: 10px;
+}
+.arrow.next {
+  right: 10px;
 }
 
 @media (max-width: 1200px) {
@@ -263,6 +402,10 @@ input::placeholder {
   .attractionCard{
     max-width: 370px; 
   }
+  .attImg{
+    aspect-ratio: unset;
+    height: 400px;
+  }
 }
 
 @media (max-width: 830px) {
@@ -271,6 +414,9 @@ input::placeholder {
   }
   .attractionCard{
     max-width: 385px; 
+  }
+  .attraction{
+    gap: 25px;
   }
 }
 
@@ -298,5 +444,23 @@ input::placeholder {
   }
   .attractionCard{
     max-width:450px;
+  }
+  .attraction{
+    max-width: 480px;
+    width: 100%;
+    flex-direction: column;
+    margin: 0 0 40px 0;
+    gap: 20px;
+    padding: 0;
+  }
+  .info{
+    padding: 0 10px 0 10px;
+  }
+  hr{
+    max-width: 480px;
+    width: 90%;
+  }
+  .attImg{
+    max-height: 350px;
   }
 }
