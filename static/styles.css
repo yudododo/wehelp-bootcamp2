@@ -61,24 +61,35 @@ table {
   color:#666666;
 }
 .header{
+  max-width: 1920px;
+  width:100%;
+  border-bottom: 1px solid #E8E8E8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar{
   max-width: 1200px;
   width:100%;
   display: flex;
   justify-content: space-between; 
   align-items: center;
-  padding: 10px 10px;
+  padding: 10px;
 }
-.header h1{
+.navbar h1{
   font-size: 30px;
   font-weight: bold;
   color: #448899;
 }
-.navbar{
+.navbar a{
+  text-decoration: none;
+}
+.menu{
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.navbar a{
+.menu a{
   padding: 10px;
   text-decoration: none;
   color: #666666;
@@ -89,7 +100,6 @@ table {
 .account a{
   padding: 0;
   text-decoration: none;
-  
 }
 .banner{
   max-width: 1920px;
@@ -335,6 +345,13 @@ input[type="radio"] {
 }
 input[type="radio"]:checked{
   background-color: #448899;
+}
+input[type="date"] {
+  border: 0;
+  border-radius: 0px;
+  padding: 5px 10px; 
+  font-size: 16px;
+  margin-left: 5px;
 }
 .time{
   display: flex;
