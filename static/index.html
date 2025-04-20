@@ -15,10 +15,48 @@
         <div class="menu">
           <a href="#">預訂行程</a>
           <div class="account">
-            <a href="#">登入</a> /
-            <a href="#">註冊</a>
+            <button class="signinup" onclick="openDialog('signin')">登入/註冊</button>
+            <!-- <button class="signup" onclick="openDialog('signup')">註冊</button> -->
+            <button class="logout">登出系統</button>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="overlay" onclick="closeDialog()"></div>
+    <!-- 註冊 Dialog -->
+    <div class="dialogSignup">
+      <div class="decoratorBar"></div>
+      <div class="dSignup">
+        <button class="closeBtn" onclick="closeDialog()"><img src="/static/img/icon_close.png"></button>
+        <h2>註冊會員帳號</h2>
+        <form id="signupForm">
+          <div class="inputGroup">
+            <input type="name" name="name" placeholder="輸入姓名">
+            <input type="email" name="email" placeholder="輸入電子信箱" id="email">
+            <input type="password" name="password" placeholder="輸入密碼" id="password">
+          </div>
+          <button class="signupBtn">註冊新帳戶</button>
+        </form>
+        <p id="errSignupMsg"></p>
+        <p id="sucSignupMsg"></p>
+        <p class="switchText">已經有帳戶？<a href="#" onclick="switchToSignin()">點此登入</a></p>
+      </div>
+    </div>
+    <!-- 登入 Dialog -->
+    <div class="dialogSignin">
+      <div class="decoratorBar"></div>
+      <div class="dSignin">
+        <button class="closeBtn" onclick="closeDialog()"><img src="/static/img/icon_close.png"></button>
+        <h2>登入會員帳號</h2>
+        <form id="signinForm">
+          <div class="inputGroup">
+            <input type="email" name="email" placeholder="輸入電子信箱" required>
+            <input type="password" name="password" placeholder="輸入密碼" required>
+          </div>
+          <button class="signinBtn" type="submit">登入帳戶</button>
+        </form>
+        <p id="errSigninMsg"></p>
+        <p class="switchText">還沒有帳戶？<a href="#" onclick="switchToSignup()">點此註冊</a></p>
       </div>
     </div>
 

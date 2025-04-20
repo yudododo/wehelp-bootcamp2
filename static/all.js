@@ -169,7 +169,7 @@ function fetchAttractionDetails(attractionId) {
   fetch(`/api/attraction/${attractionId}`)
     .then((res) => res.json())
     .then((data) => {
-      console.log("ss")
+      // console.log("ss")
       if (!data.data) return;
       const attraction = data.data;
 
@@ -385,3 +385,115 @@ function fetchAttractionDetails(attractionId) {
     })
     .catch((error) => console.error("Error:", error));
 }
+function closeDialog() {
+  document.querySelector(".dialogSignin").style.display = "none";
+  document.querySelector(".dialogSignup").style.display = "none";
+  document.querySelector(".overlay").style.display = "none";
+}
+function openDialog(dialogType) {
+  if (dialogType === "signin") {
+    document.querySelector(".dialogSignin").style.display = "flex";
+    document.querySelector(".overlay").style.display = "block";
+  } else if (dialogType === "signup") {
+    document.querySelector(".dialogSignup").style.display = "flex";
+    document.querySelector(".overlay").style.display = "block";
+  }
+}
+function switchToSignup() {
+  document.querySelector(".dialogSignin").style.display = "none";
+  document.querySelector(".dialogSignup").style.display = "flex"; 
+}
+function switchToSignin() {
+  document.querySelector(".dialogSignup").style.display = "none";
+  document.querySelector(".dialogSignin").style.display = "flex";
+}
+
+document.querySelector("#signupForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
+  try {
+    const res = await fetch("/api/user", {
+      method: "POST",
+      body: formData
+    });
+    const result = await res.json();
+    if (res.ok) {
+      sucSignupMsg = document.querySelector("#sucSignupMsg");
+      sucSignupMsg.style.display = "flex";
+      sucSignupMsg.textContent = result.message;
+    } else {
+      const errSignupMsg = document.querySelector("#errSignupMsg");
+      errSignupMsg.style.display = "flex";
+      errSignupMsg.textContent = result.message;
+    }
+  } catch (err) {
+    console.error("註冊錯誤：", err);
+  }
+});
+
+const logout = document.querySelector(".logout");
+const signin = document.querySelector(".signin");
+const signup = document.querySelector(".signup");
+
+logout.addEventListener("click",() => {
+  localStorage.removeItem("token"); // 移除 token
+  location.reload(); // 重新載入
+})
+
+document.querySelector("#signinForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
+  try {
+    const res = await fetch("/api/user/auth", {
+      method: "PUT",
+      body: formData
+    });
+    const result = await res.json();
+// 3. After successful signing in, the front-end will get signed TOKEN from the back-end.
+// Save it into LocalStorage of the user's browser.
+    if (res.ok) {
+      localStorage.setItem("token", result.token);
+      location.reload();
+    }else{
+      console.log(result);
+      const errSigninMsg = document.querySelector("#errSigninMsg");
+      errSigninMsg.style.display = "flex";
+      errSigninMsg.textContent = result.message;
+    }
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+// 4. When a signed-in user tries to call APIs which require authorization, our front-end
+// code should send a request with Bearer Token in the Authorization header.
+window.addEventListener("DOMContentLoaded", async () => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    // 發送驗證請求
+    const res = await fetch("/api/user/auth", {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
+    const result = await res.json();
+    if (result.data) {
+      console.log("使用者資訊：", result.data);
+      // token 驗證成功
+      document.querySelector(".signinup").style.display = "none";
+      document.querySelector(".logout").style.display = "flex";
+    } else {
+      console.log("未登入或 token 無效");
+      // token 無效或過期，
+      document.querySelector(".signinup").style.display = "flex";
+      document.querySelector(".logout").style.display = "none";
+    }
+  } else {
+    // 沒有 token
+    document.querySelector(".signinup").style.display = "flex";
+    document.querySelector(".logout").style.display = "none";
+  }
+});
