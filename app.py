@@ -6,6 +6,7 @@ import os
 import re
 from dotenv import load_dotenv
 from fastapi.staticfiles import StaticFiles
+import jwt
 app=FastAPI()
 
 # 提供 static 資料夾內的靜態檔案
@@ -153,7 +154,82 @@ async def get_mrts():
 #     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)""", 
 #   (name, category, description, address, transport, mrt, lat, lng, images_json))
 
-# # 提交變更
+# 建立 user 資料表
+# cursor.execute("""
+#   CREATE TABLE users (
+#     id INT AUTO_INCREMENT PRIMARY KEY,
+#     name VARCHAR(255) NOT NULL,
+#     email VARCHAR(255) NOT NULL UNIQUE,
+#     password VARCHAR(255) NOT NULL
+#   );
+# """)
+
+# 提交變更
 # mydb.commit()
-# # cursor.close()
-# # mydb.close()
+# cursor.close()
+# mydb.close()
+
+# encoded = jwt.encode({"name":"昭"}, "ann", algorithm="HS256")
+# print(encoded)
+# decoded = jwt.decode(encoded, "ann", algorithms=["HS256"])
+# print(decoded)
+SECRET_KEY = os.getenv("SECRET_KEY")
+# JWT 加密 token
+def create_token(data: dict):
+  return jwt.encode(data, SECRET_KEY, algorithm="HS256")
+# 解密
+def verify_token(token: str):
+  try:
+    return jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+  except:
+    return None
+
+# 註冊
+@app.post("/api/user")
+def signup(name: str = Form(...), email: str = Form(...), password: str = Form(...)):
+  cursor = mydb.cursor(dictionary=True)
+  try:
+    cursor.execute(
+      "INSERT INTO users (name, email, password) VALUES (%s, %s, %s)",
+        (name, email, password)
+    )
+    mydb.commit()
+    return {"ok": True,"message": "註冊成功，請登入系統"}
+  except mysql.connector.errors.IntegrityError:
+    return JSONResponse(content={"error": True, "message": "Email已經註冊帳戶"}, status_code=400)
+
+# 登入
+# 2. When a user tries to sign in, our back-end code checks if the pair of email and
+# password exists in the database. If yes, encode user id, name, email, and other
+# critical information by JWT encoding mechanism and send a signed TOKEN back to
+# the front-end.
+@app.put("/api/user/auth")
+def signin(email: str = Form(...), password: str = Form(...)):
+  cursor = mydb.cursor(dictionary=True)
+  cursor.execute("SELECT * FROM users WHERE email = %s", (email,))
+  user = cursor.fetchone()
+  if user and user["password"] == password:
+    token = create_token({
+      "id": user["id"],
+      "name": user["name"],
+      "email": user["email"]
+    })
+    return {"token": token}
+  return JSONResponse(content={"error": True, "message": "電子郵件或密碼輸入錯誤"}, status_code=400)
+
+# 驗證使用者
+# 5. Once our back-end code receives a request from the front-end, get TOKEN from the
+# Authorization header, and then, decode and verify received TOKEN by JWT
+# decoding mechanism. If failed to decode or verify it, it means it’s an unauthorized
+# request which should be rejected. Else, our back-end code can get critical user
+# information which is saved in the previous signing-in procedure.
+@app.get("/api/user/auth")
+def get_user_auth(authorization: str = Header(None)):
+  cursor = mydb.cursor(dictionary=True)
+  if not authorization.startswith("Bearer "):
+    return {"data": None}
+  token = authorization.split(" ")[1]
+  user_data = verify_token(token)
+  if not user_data:
+    return {"data": None}
+  return {"data": user_data}

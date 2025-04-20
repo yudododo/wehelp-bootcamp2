@@ -97,9 +97,12 @@ table {
 .account{
   padding: 10px;
 }
-.account a{
+.account button{
   padding: 0;
-  text-decoration: none;
+  background: white;
+  border:0;
+  font-size: 16px;
+  color: #666666;
 }
 .banner{
   max-width: 1920px;
@@ -143,7 +146,8 @@ table {
   font-weight:bold;
   font-size: 16px;
 }
-input::placeholder {
+
+input[type="text"]::placeholder {
   color: #757575;
   font-weight:bold;
   font-size: 16px;
@@ -200,10 +204,10 @@ input::placeholder {
   width:100%;
   /* display:flex; */
   display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); /* 卡片自適應 */
+  grid-template-columns: repeat(auto-fit, 270px); /* 卡片自適應 */
   gap:30px;
   padding: 15px;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
 }
 .attractions a{
@@ -410,6 +414,115 @@ hr {
 }
 .arrow.next {
   right: 10px;
+}
+.dialogSignup, .dialogSignin {
+  max-width: 340px;
+  width:100%;
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  display: none;
+  flex-direction: column;
+}
+.decoratorBar{
+  border-radius: 5px 5px 0px 0px;
+  background: linear-gradient(to right,#66AABB, #337788);
+  height:10px;
+}
+.dSignup, .dSignin {
+  background: white;
+  max-width: 340px;
+  padding: 15px;
+  border-radius: 0 0 5px 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.dSignup h2, .dSignin h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: bold;
+}
+.closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+#signinForm, #signupForm{
+  width:100%;
+  text-align: center;
+}
+.inputGroup {
+  max-width: 340px;
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+input[type="email"], input[type="password"], input[type="name"] {
+  max-width:340px;
+  /* width: 100%; */
+  padding: 15px;
+  border: 1px solid #CCCCCC;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.signinBtn, .signupBtn {
+  width: 100%;
+  padding: 10px;
+  background-color: #448899;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.signinBtn:hover, .signupBtn:hover {
+  background-color: rgb(76, 112, 134);
+}
+.switchText {
+  margin-top: 10px;
+}
+.switchText a {
+  text-decoration: none;
+  color:#666666;
+}
+.switchText a:hover {
+  text-decoration: underline;
+}
+/* 遮罩層（背景變暗） */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+}
+#errSigninMsg, #errSignupMsg{
+  margin-top: 10px;
+  color:red;
+  display:none;
+}
+#sucSignupMsg{
+  margin-top: 10px;
+  color:rgb(58, 219, 165);
+  display:none;
+}
+.logout{
+  display:none;
 }
 
 @media (max-width: 1200px) {
